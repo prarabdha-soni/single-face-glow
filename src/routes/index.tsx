@@ -122,13 +122,13 @@ function ProductPage() {
                 +
               </button>
             </div>
-            <button className="flex-1 bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-3 hover:bg-foreground/85 transition-colors">
-              Add to Bag
+            <button className="flex-1 border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 hover:bg-foreground hover:text-background transition-colors">
+              Add to Cart
             </button>
           </div>
 
-          <button className="w-full border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-foreground hover:text-background transition-colors">
-            Add to Regimen
+          <button className="w-full bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-foreground/85 transition-colors">
+            Buy Now
           </button>
 
           {/* Attribute pills */}
