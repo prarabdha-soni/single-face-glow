@@ -56,20 +56,12 @@ function ProductPage() {
       {/* Nav */}
       <header className="border-b border-border">
         <div className="max-w-[1600px] mx-auto px-6 py-5 flex items-center justify-between">
-          <nav className="hidden md:flex gap-8 text-[13px]">
-            <a href="#" className="hover:opacity-60">Bestsellers</a>
-            <a href="#" className="hover:opacity-60">New &amp; Featured</a>
-            <a href="#" className="hover:opacity-60">Skincare</a>
-            <a href="#" className="hover:opacity-60">The O. Library</a>
-          </nav>
           <a href="/" className="font-display text-2xl tracking-tight">
             Nishu Beauty<span className="align-super text-xs">.</span>
           </a>
-          <div className="flex items-center gap-5 text-[13px]">
-            <button aria-label="Search" className="hover:opacity-60">Search</button>
-            <button aria-label="Account" className="hover:opacity-60">Account</button>
-            <button aria-label="Bag" className="hover:opacity-60">Bag (0)</button>
-          </div>
+          <button aria-label="Cart" className="text-[13px] hover:opacity-60 tracking-wider uppercase">
+            Cart ({qty})
+          </button>
         </div>
       </header>
 
