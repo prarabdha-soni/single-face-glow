@@ -6,7 +6,7 @@ import productCream from "@/assets/product-cream.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Natural Moisturizing Face Cream — The Ordinary Clone" },
+      { title: "Natural Moisturizing Face Cream — Nishu Beauty" },
       {
         name: "description",
         content:
@@ -39,8 +39,8 @@ function ProductPage() {
       <div className="border-b border-border">
         <div className="max-w-[1600px] mx-auto flex items-stretch text-[11px] tracking-[0.15em] uppercase">
           <div className="bg-foreground text-background px-6 py-3 flex items-center gap-2">
-            <span className="w-4 h-4 rounded-full border border-background inline-flex items-center justify-center text-[9px]">O.</span>
-            The Ordinary
+            <span className="w-4 h-4 rounded-full border border-background inline-flex items-center justify-center text-[9px]">N.</span>
+            Nishu Beauty
           </div>
           <div className="hidden md:flex items-center gap-2 px-6 py-3 text-muted-foreground">
             <span className="w-4 h-4 rounded-full border border-border inline-flex items-center justify-center text-[9px]">N</span>
@@ -63,7 +63,7 @@ function ProductPage() {
             <a href="#" className="hover:opacity-60">The O. Library</a>
           </nav>
           <a href="/" className="font-display text-2xl tracking-tight">
-            The Ordinary<span className="align-super text-xs">.</span>
+            Nishu Beauty<span className="align-super text-xs">.</span>
           </a>
           <div className="flex items-center gap-5 text-[13px]">
             <button aria-label="Search" className="hover:opacity-60">Search</button>
@@ -214,7 +214,7 @@ function ProductPage() {
       <footer className="bg-foreground text-background">
         <div className="max-w-[1600px] mx-auto px-6 py-14 grid md:grid-cols-4 gap-10 text-sm">
           <div>
-            <p className="font-display text-2xl mb-3">The Ordinary.</p>
+            <p className="font-display text-2xl mb-3">Nishu Beauty.</p>
             <p className="opacity-70 text-xs leading-relaxed">
               Clinical formulations with integrity.
             </p>
