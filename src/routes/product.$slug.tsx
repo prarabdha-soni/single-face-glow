@@ -110,7 +110,7 @@ function ProductDetail() {
               onClick={() => setLightboxOpen(true)}
               role="button"
               aria-label="Open image gallery"
-              className="w-full h-full object-cover cursor-zoom-in"
+              className="w-full h-full object-contain cursor-zoom-in"
             />
           </div>
           {product.images.length > 1 && (

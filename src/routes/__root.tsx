@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "../lib/cart";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -39,9 +38,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -81,12 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Glass Skin Face Cream — Nishu Beauty" },
       { name: "description", content: "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 30g. Dermatologically tested." },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "Nishu Beauty" },
       { property: "og:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       { property: "og:description", content: "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 30g. Dermatologically tested." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@nishubeauty" },
       { name: "twitter:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       { name: "twitter:description", content: "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 30g. Dermatologically tested." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c97c0dac-4b32-4c87-a00e-48832dd64b7f" },
