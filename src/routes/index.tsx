@@ -83,10 +83,10 @@ function ProductPage() {
         {/* Details */}
         <div className="md:pt-4">
           <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Moisturizers · 50ml
+            Cream · 50ml
           </p>
           <h1 className="font-display text-4xl md:text-5xl leading-[1.05] mb-4">
-            Natural Moisturizing<br />Face Cream
+            Glass Skin<br />Face Cream
           </h1>
           <p className="text-[15px] text-muted-foreground leading-relaxed max-w-md mb-6">
             A lightweight, non-greasy daily cream formulated with 11 skin-identical
