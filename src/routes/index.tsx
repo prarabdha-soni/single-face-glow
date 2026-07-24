@@ -47,7 +47,6 @@ function ProductPage() {
           </div>
         </div>
       </div>
-      </div>
 
       {/* Nav */}
       <header className="border-b border-border">
