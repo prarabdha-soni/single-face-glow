@@ -38,22 +38,15 @@ function ProductPage() {
         Complimentary shipping on all orders over ₹1,499
       </div>
 
-      {/* Brand tabs */}
+      {/* Brand tab */}
       <div className="border-b border-border">
         <div className="max-w-[1600px] mx-auto flex items-stretch text-[11px] tracking-[0.15em] uppercase">
           <div className="bg-foreground text-background px-6 py-3 flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border border-background inline-flex items-center justify-center text-[9px]">N.</span>
             Nishu Beauty
           </div>
-          <div className="hidden md:flex items-center gap-2 px-6 py-3 text-muted-foreground">
-            <span className="w-4 h-4 rounded-full border border-border inline-flex items-center justify-center text-[9px]">N</span>
-            NIOD
-          </div>
-          <div className="hidden md:flex items-center gap-2 px-6 py-3 text-muted-foreground">
-            <span className="w-4 h-4 rounded-full border border-border inline-flex items-center justify-center text-[9px]">D</span>
-            DECIEM
-          </div>
         </div>
+      </div>
       </div>
 
       {/* Nav */}
