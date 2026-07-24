@@ -33,21 +33,6 @@ function ProductPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Announcement bar */}
-      <div className="bg-foreground text-background text-[11px] tracking-wider uppercase text-center py-2.5 px-4">
-        Complimentary shipping on all orders over ₹1,499
-      </div>
-
-      {/* Brand tab */}
-      <div className="border-b border-border">
-        <div className="max-w-[1600px] mx-auto flex items-stretch text-[11px] tracking-[0.15em] uppercase">
-          <div className="bg-foreground text-background px-6 py-3 flex items-center gap-2">
-            <span className="w-4 h-4 rounded-full border border-background inline-flex items-center justify-center text-[9px]">N.</span>
-            Nishu Beauty
-          </div>
-        </div>
-      </div>
-
       {/* Nav */}
       <header className="border-b border-border">
         <div className="max-w-[1600px] mx-auto px-6 py-5 flex items-center justify-between">
@@ -59,6 +44,7 @@ function ProductPage() {
           </button>
         </div>
       </header>
+
 
       {/* Product */}
       <main className="max-w-[1600px] mx-auto px-6 py-10 md:py-16 grid md:grid-cols-2 gap-12 md:gap-20">
@@ -157,25 +143,27 @@ function ProductPage() {
             <div className="py-2 text-[14px] leading-relaxed text-muted-foreground min-h-[140px]">
               {tab === "desc" && (
                 <p>
-                  This moisturizer combines a blend of nine skin-identical amino acids,
-                  dermal lipids, hyaluronic acid and multiple ceramides. Together they
-                  offer lightweight, all-day surface hydration for a soft and smooth
-                  finish. Suitable for all skin types.
+                  NISHU Glass Skin Face Cream is a lightweight daily face cream
+                  formulated with Kojic Dipalmitate, Arbutin, Niacinamide and
+                  Octinoxate. The formulation helps improve the appearance of
+                  uneven skin tone, dark spots and dull-looking skin while
+                  supporting a smoother, more radiant complexion.
                 </p>
               )}
               {tab === "how" && (
                 <p>
-                  Apply a small amount to face in the AM and PM, after water-based
-                  serums but before heavier oils. Avoid the eye contour.
+                  Apply a small amount to clean, dry skin and gently massage over
+                  the face and neck until fully absorbed. Use once or twice daily.
+                  When used during the day, follow with a broad-spectrum sunscreen.
                 </p>
               )}
               {tab === "ingredients" && (
                 <p>
-                  Aqua, Caprylic/Capric Triglyceride, Glycerin, Cetyl Alcohol, Squalane,
-                  Sodium Hyaluronate, Ceramide NP, Ceramide AP, Phytosphingosine,
-                  Cholesterol, Tocopherol.
+                  Kojic Dipalmitate, Niacinamide, Arbutin and Octinoxate, blended
+                  into a moisturizing cream base.
                 </p>
               )}
+
             </div>
           </div>
         </div>
