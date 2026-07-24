@@ -66,7 +66,7 @@ function ProductPage() {
         <div className="bg-muted">
           <img
             src={heroCream}
-            alt="Natural Moisturizing Face Cream"
+            alt="Glass Skin Face Cream"
             width={1600}
             height={1200}
             className="w-full h-auto object-cover"
