@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import heroCream from "@/assets/hero-cream.jpg";
-import productCream from "@/assets/product-cream.jpg";
+import jarAsset from "@/assets/nishu-jar.png.asset.json";
+import boxAsset from "@/assets/nishu-box.png.asset.json";
+
+const heroCream = jarAsset.url;
+const productCream = boxAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
