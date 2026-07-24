@@ -51,22 +51,6 @@ function ShopPage() {
     <SiteLayout>
       <HeroBanner />
 
-      <section id="about" className="bg-[#fcfbfd] py-12 md:py-16">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-          <div className="rounded-[2rem] border border-[#e9e5ef] bg-white p-6 md:p-10 shadow-sm">
-            <div className="mb-6 text-center md:text-left">
-              <p className="text-sm uppercase tracking-[0.3em] text-[#9B82D7] mb-3">About Nishu Beauty</p>
-              <h2 className="font-display text-3xl md:text-4xl tracking-tight">
-                Science-led care for radiant, balanced skin.
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-3xl">
-              Nishu Beauty blends gentle actives and modern formulations to support healthy skin day after day. Each product is crafted to visibly soften texture, even tone, and strengthen the skin barrier without heaviness.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section>
         <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-12 md:py-16">
           <div className="mb-10 md:mb-12 text-center md:text-left">
@@ -78,36 +62,47 @@ function ShopPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-10 md:gap-x-8 md:gap-y-14">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {products.map((p) => (
               <Link
                 key={p.slug}
                 to="/product/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col text-center md:text-left"
+                className="group grid gap-6 rounded-[2rem] border border-[#e9e5ef] bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.06)] md:grid-cols-[1.1fr_0.9fr]"
               >
-                <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-2">
+                <div className="bg-muted/60 flex items-center justify-center overflow-hidden rounded-3xl p-4">
                   <img
                     src={p.images[0]}
                     alt={p.name}
-                    className="w-full h-full object-contain object-center group-hover:scale-[1.03] transition-transform duration-300"
+                    className="w-full h-auto object-contain"
                     loading="lazy"
                   />
                 </div>
-                <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1.5">
-                  {p.category} · {p.size}
-                </p>
-                <h3 className="font-display text-lg md:text-xl leading-snug mb-1.5">
-                  {p.name}
-                </h3>
-                <p className="text-xs text-muted-foreground mb-3 line-clamp-2 hidden sm:block flex-1">
-                  {p.tagline}
-                </p>
-                <div className="flex items-center justify-center md:justify-start gap-2 flex-wrap">
-                  <span className="text-sm font-display">₹ {p.price}.00</span>
-                  <span className="text-[11px] text-muted-foreground line-through">
-                    ₹ {p.compareAt}.00
-                  </span>
+
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-[#9B82D7] mb-3">
+                      {p.category} · {p.size}
+                    </p>
+                    <h3 className="font-display text-2xl md:text-3xl leading-snug mb-4 text-foreground">
+                      {p.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                      {p.tagline}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <span className="text-xl font-semibold">₹ {p.price}.00</span>
+                      <span className="ml-3 text-sm text-muted-foreground line-through">
+                        ₹ {p.compareAt}.00
+                      </span>
+                    </div>
+                    <span className="text-xs uppercase tracking-[0.25em] text-[#9B82D7]">
+                      Shop now
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

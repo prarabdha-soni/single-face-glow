@@ -103,7 +103,7 @@ function ProductDetail() {
       <main className="max-w-[1600px] mx-auto px-6 py-8 md:py-12 grid md:grid-cols-2 gap-12 md:gap-20">
         {/* Image */}
         <div>
-          <div className="bg-muted aspect-square flex items-center justify-center overflow-hidden p-0">
+          <div className="bg-muted aspect-square flex items-center justify-center overflow-hidden rounded-[2rem] border border-border/70 p-5 sm:p-6">
             <img
               src={product.images[activeImg]}
               alt={product.name}
