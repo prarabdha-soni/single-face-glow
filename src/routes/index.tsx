@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       {
         property: "og:description",
-        content: "Clinical formulations with integrity. 50ml daily face cream.",
+        content: "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 30g. Dermatologically tested.",
       },
       { property: "og:type", content: "product" },
       { name: "twitter:card", content: "summary_large_image" },
