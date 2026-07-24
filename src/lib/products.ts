@@ -1,7 +1,6 @@
-import jarAsset from "@/assets/nishu-jar.png.asset.json";
-import boxAsset from "@/assets/nishu-box.png.asset.json";
-import sunscreenAsset from "@/assets/nishu-sunscreen.png.asset.json";
-import facewashAsset from "@/assets/nishu-facewash.png.asset.json";
+import nightCreamImg from "@/assets/product-night-cream.png";
+import sunscreenImg from "@/assets/product-sunscreen.png";
+import faceWashImg from "@/assets/product-face-wash.png";
 
 export type Product = {
   slug: string;
@@ -21,13 +20,12 @@ export const products: Product[] = [
   {
     slug: "glass-skin-face-cream",
     name: "Glass Skin Face Cream",
-    tagline:
-      "A lightweight daily cream for uneven tone, dark spots and dull-looking skin.",
-    category: "Cream",
+    tagline: "A lightweight night cream for uneven tone, dark spots and dull-looking skin.",
+    category: "Night Cream",
     size: "30g",
     price: 300,
     compareAt: 600,
-    images: [jarAsset.url, boxAsset.url],
+    images: [nightCreamImg],
     description:
       "NISHU Glass Skin Face Cream is a lightweight daily face cream formulated with Kojic Dipalmitate, Arbutin, Niacinamide and Octinoxate. The formulation helps improve the appearance of uneven skin tone, dark spots and dull-looking skin while supporting a smoother, more radiant complexion.",
     howToUse:
@@ -38,13 +36,12 @@ export const products: Product[] = [
   {
     slug: "daily-sunscreen-spf-50",
     name: "Daily Sunscreen SPF 50",
-    tagline:
-      "Broad spectrum UVA/UVB PA+++ protection with Zinc Oxide and Niacinamide.",
+    tagline: "Broad spectrum UVA/UVB PA+++ protection with Zinc Oxide and Niacinamide.",
     category: "Sunscreen",
     size: "50g",
     price: 450,
     compareAt: 900,
-    images: [sunscreenAsset.url],
+    images: [sunscreenImg],
     description:
       "NISHU Daily Sunscreen SPF 50 is a broad-spectrum sunscreen with Zinc Oxide and Niacinamide. It protects against UVA and UVB rays (PA+++), soothes the skin and helps even out skin tone. Lightweight, non-greasy and suitable for all skin types.",
     howToUse:
@@ -55,13 +52,12 @@ export const products: Product[] = [
   {
     slug: "brightening-face-wash",
     name: "Brightening Face Wash",
-    tagline:
-      "A gentle daily cleanser with Kojic Acid and Niacinamide to brighten and even tone.",
+    tagline: "A gentle daily cleanser with Kojic Acid and Niacinamide to brighten and even tone.",
     category: "Face Wash",
     size: "100ml",
     price: 250,
     compareAt: 500,
-    images: [facewashAsset.url],
+    images: [faceWashImg],
     description:
       "NISHU Brightening Face Wash is a gentle daily cleanser formulated with Kojic Acid and Niacinamide. It cleanses, brightens and helps even skin tone without stripping the skin, leaving it soft, fresh and radiant.",
     howToUse:
@@ -71,5 +67,4 @@ export const products: Product[] = [
   },
 ];
 
-export const getProduct = (slug: string) =>
-  products.find((p) => p.slug === slug);
+export const getProduct = (slug: string) => products.find((p) => p.slug === slug);

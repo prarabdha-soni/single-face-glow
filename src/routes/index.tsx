@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { HeroBanner } from "@/components/HeroBanner";
 import { SiteLayout } from "@/components/SiteLayout";
 import { products } from "@/lib/products";
 
@@ -27,59 +28,48 @@ export const Route = createFileRoute("/")({
 function ShopPage() {
   return (
     <SiteLayout>
-      {/* Hero */}
-      <section className="border-b border-border">
-        <div className="max-w-[1600px] mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-end">
-          <h1 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight">
-            Clinical skincare,<br />honestly priced.
-          </h1>
-          <p className="text-[15px] text-muted-foreground leading-relaxed max-w-md md:justify-self-end">
-            Three essentials. Considered ingredients. Formulated to work
-            together — or on their own.
-          </p>
-        </div>
-      </section>
+      <HeroBanner />
 
-      {/* Product grid */}
       <section>
-        <div className="max-w-[1600px] mx-auto px-6 py-14">
-          <div className="flex items-baseline justify-between mb-8">
-            <h2 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
-              All Products · {products.length}
-            </h2>
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-12 md:py-16">
+          <div className="mb-10 md:mb-12 text-center md:text-left">
+            <h1 className="font-display text-2xl md:text-3xl tracking-tight mb-2">
+              Shop essentials
+            </h1>
+            <p className="text-[13px] text-muted-foreground max-w-md mx-auto md:mx-0">
+              Three considered formulas — cleanse, protect, and nourish.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-10 md:gap-x-8 md:gap-y-14">
             {products.map((p) => (
               <Link
                 key={p.slug}
                 to="/product/$slug"
                 params={{ slug: p.slug }}
-                className="group bg-background p-6 flex flex-col hover:bg-muted transition-colors"
+                className="group flex flex-col text-center md:text-left"
               >
-                <div className="bg-muted aspect-[4/5] flex items-center justify-center overflow-hidden mb-5">
+                <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-6 md:p-8">
                   <img
                     src={p.images[0]}
                     alt={p.name}
-                    className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform"
+                    className="max-h-[120px] md:max-h-[148px] w-auto max-w-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
+                <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1.5">
                   {p.category} · {p.size}
                 </p>
-                <h3 className="font-display text-2xl leading-tight mb-2">
+                <h3 className="font-display text-lg md:text-xl leading-snug mb-1.5">
                   {p.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4 flex-1">
+                <p className="text-xs text-muted-foreground mb-3 line-clamp-2 hidden sm:block flex-1">
                   {p.tagline}
                 </p>
-                <div className="flex items-center gap-3">
-                  <span className="text-base font-display">₹ {p.price}.00</span>
-                  <span className="text-xs text-muted-foreground line-through">
+                <div className="flex items-center justify-center md:justify-start gap-2 flex-wrap">
+                  <span className="text-sm font-display">₹ {p.price}.00</span>
+                  <span className="text-[11px] text-muted-foreground line-through">
                     ₹ {p.compareAt}.00
-                  </span>
-                  <span className="text-[10px] tracking-wider uppercase bg-foreground text-background px-2 py-0.5">
-                    {Math.round((1 - p.price / p.compareAt) * 100)}% Off
                   </span>
                 </div>
               </Link>
@@ -88,17 +78,18 @@ function ShopPage() {
         </div>
       </section>
 
-      {/* Trust strip */}
       <section id="about" className="border-t border-border">
-        <div className="max-w-[1600px] mx-auto px-6 py-14 grid md:grid-cols-3 gap-10 text-center">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-12 md:py-16 grid md:grid-cols-3 gap-8 md:gap-12">
           {[
             ["Clinical", "Formulations rooted in dermatological research."],
             ["Honest", "Fair pricing. No inflated marketing claims."],
             ["Considered", "Recyclable packaging and thoughtful sourcing."],
           ].map(([t, d]) => (
-            <div key={t}>
-              <h3 className="font-display text-2xl mb-3">{t}</h3>
-              <p className="text-sm text-muted-foreground max-w-xs mx-auto">{d}</p>
+            <div key={t} className="text-center md:text-left">
+              <h3 className="font-display text-lg md:text-xl mb-2">{t}</h3>
+              <p className="text-xs md:text-[13px] text-muted-foreground leading-relaxed max-w-xs mx-auto md:mx-0">
+                {d}
+              </p>
             </div>
           ))}
         </div>

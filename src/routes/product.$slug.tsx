@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { SiteLayout } from "@/components/SiteLayout";
+import { useCart } from "@/lib/cart";
 import { getProduct, products } from "@/lib/products";
 
 export const Route = createFileRoute("/product/$slug")({
@@ -55,6 +57,7 @@ export const Route = createFileRoute("/product/$slug")({
 
 function ProductDetail() {
   const { product } = Route.useLoaderData();
+  const { addItem, openCart } = useCart();
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState<"desc" | "how" | "ingredients">("desc");
   const [activeImg, setActiveImg] = useState(0);
@@ -62,11 +65,31 @@ function ProductDetail() {
 
   const related = products.filter((p) => p.slug !== product.slug);
 
+  const cartPayload = {
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    size: product.size,
+    image: product.images[0],
+  };
+
+  const handleAddToCart = () => {
+    addItem(cartPayload, qty);
+    toast.success(`Added ${qty} to cart`);
+  };
+
+  const handleBuyNow = () => {
+    addItem(cartPayload, qty);
+    openCart("checkout");
+  };
+
   return (
     <SiteLayout>
       {/* Breadcrumb */}
       <div className="max-w-[1600px] mx-auto px-6 pt-6 text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
-        <Link to="/" className="hover:text-foreground">Shop</Link>
+        <Link to="/" className="hover:text-foreground">
+          Shop
+        </Link>
         <span className="mx-2">/</span>
         <span>{product.category}</span>
       </div>
@@ -103,9 +126,7 @@ function ProductDetail() {
           <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
             {product.category} · {product.size}
           </p>
-          <h1 className="font-display text-4xl md:text-5xl leading-[1.05] mb-4">
-            {product.name}
-          </h1>
+          <h1 className="font-display text-4xl md:text-5xl leading-[1.05] mb-4">{product.name}</h1>
           <p className="text-[15px] text-muted-foreground leading-relaxed max-w-md mb-6">
             {product.tagline}
           </p>
@@ -138,18 +159,28 @@ function ProductDetail() {
                 +
               </button>
             </div>
-            <button className="flex-1 border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 hover:bg-foreground hover:text-background transition-colors">
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="flex-1 border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 hover:bg-foreground hover:text-background transition-colors"
+            >
               Add to Cart
             </button>
           </div>
 
-          <button className="w-full bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-foreground/85 transition-colors">
+          <button
+            type="button"
+            onClick={handleBuyNow}
+            className="w-full bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-foreground/85 transition-colors"
+          >
             Buy Now
           </button>
 
           <div className="grid grid-cols-3 gap-px bg-border border border-border mb-10 text-center text-[11px] tracking-wider uppercase">
             {["Vegan", "Cruelty-Free", "Dermatologically Tested"].map((v) => (
-              <div key={v} className="bg-background py-4 px-2">{v}</div>
+              <div key={v} className="bg-background py-4 px-2">
+                {v}
+              </div>
             ))}
           </div>
 
@@ -190,24 +221,31 @@ function ProductDetail() {
             <h2 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-8">
               You may also like
             </h2>
-            <div className="grid sm:grid-cols-2 gap-px bg-border border border-border">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
               {related.map((p) => (
                 <Link
                   key={p.slug}
                   to="/product/$slug"
                   params={{ slug: p.slug }}
-                  className="group bg-background p-6 flex flex-col hover:bg-muted transition-colors"
+                  className="group flex flex-col"
                 >
-                  <div className="bg-muted aspect-[4/5] flex items-center justify-center overflow-hidden mb-5">
-                    <img src={p.images[0]} alt={p.name} loading="lazy" className="w-full h-full object-contain" />
+                  <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-6">
+                    <img
+                      src={p.images[0]}
+                      alt={p.name}
+                      loading="lazy"
+                      className="max-h-[120px] w-auto max-w-full object-contain group-hover:scale-[1.03] transition-transform"
+                    />
                   </div>
-                  <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-2">
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1.5">
                     {p.category} · {p.size}
                   </p>
-                  <h3 className="font-display text-2xl leading-tight mb-2">{p.name}</h3>
-                  <div className="flex items-center gap-3">
-                    <span className="text-base font-display">₹ {p.price}.00</span>
-                    <span className="text-xs text-muted-foreground line-through">₹ {p.compareAt}.00</span>
+                  <h3 className="font-display text-lg leading-snug mb-2">{p.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-display">₹ {p.price}.00</span>
+                    <span className="text-[11px] text-muted-foreground line-through">
+                      ₹ {p.compareAt}.00
+                    </span>
                   </div>
                 </Link>
               ))}
