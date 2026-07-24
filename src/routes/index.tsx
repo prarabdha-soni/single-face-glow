@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 50ml. Dermatologically tested.",
+          "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 30g. Dermatologically tested.",
       },
       { property: "og:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       {
@@ -69,7 +69,7 @@ function ProductPage() {
         {/* Details */}
         <div className="md:pt-4">
           <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Cream · 50ml
+            Cream · 30g
           </p>
           <h1 className="font-display text-4xl md:text-5xl leading-[1.05] mb-4">
             Glass Skin<br />Face Cream
@@ -79,10 +79,14 @@ function ProductPage() {
             lipids to soften, smooth and support the skin barrier.
           </p>
 
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-2xl font-display">₹ 950.00</span>
-            <span className="text-xs text-muted-foreground line-through">₹ 1,200.00</span>
+          <div className="flex items-center gap-3 mb-8">
+            <span className="text-2xl font-display">₹ 300.00</span>
+            <span className="text-xs text-muted-foreground line-through">₹ 600.00</span>
+            <span className="text-[11px] tracking-wider uppercase bg-foreground text-background px-2 py-1">
+              50% Off
+            </span>
           </div>
+
 
           {/* Qty + CTA */}
           <div className="flex items-stretch gap-3 mb-6">
