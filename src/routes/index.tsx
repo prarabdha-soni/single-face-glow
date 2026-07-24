@@ -1,18 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import heroCream from "@/assets/hero-cream.jpg";
-import productCream from "@/assets/product-cream.jpg";
+import jarAsset from "@/assets/nishu-jar.png.asset.json";
+import boxAsset from "@/assets/nishu-box.png.asset.json";
+
+const heroCream = jarAsset.url;
+const productCream = boxAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Natural Moisturizing Face Cream — Nishu Beauty" },
+      { title: "Glass Skin Face Cream — Nishu Beauty" },
       {
         name: "description",
         content:
-          "A lightweight daily moisturizer with clinical formulations. 50ml. Fragrance-free, vegan, cruelty-free.",
+          "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 50ml. Dermatologically tested.",
       },
-      { property: "og:title", content: "Natural Moisturizing Face Cream" },
+      { property: "og:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       {
         property: "og:description",
         content: "Clinical formulations with integrity. 50ml daily face cream.",
@@ -35,20 +38,12 @@ function ProductPage() {
         Complimentary shipping on all orders over ₹1,499
       </div>
 
-      {/* Brand tabs */}
+      {/* Brand tab */}
       <div className="border-b border-border">
         <div className="max-w-[1600px] mx-auto flex items-stretch text-[11px] tracking-[0.15em] uppercase">
           <div className="bg-foreground text-background px-6 py-3 flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border border-background inline-flex items-center justify-center text-[9px]">N.</span>
             Nishu Beauty
-          </div>
-          <div className="hidden md:flex items-center gap-2 px-6 py-3 text-muted-foreground">
-            <span className="w-4 h-4 rounded-full border border-border inline-flex items-center justify-center text-[9px]">N</span>
-            NIOD
-          </div>
-          <div className="hidden md:flex items-center gap-2 px-6 py-3 text-muted-foreground">
-            <span className="w-4 h-4 rounded-full border border-border inline-flex items-center justify-center text-[9px]">D</span>
-            DECIEM
           </div>
         </div>
       </div>
@@ -71,7 +66,7 @@ function ProductPage() {
         <div className="bg-muted">
           <img
             src={heroCream}
-            alt="Natural Moisturizing Face Cream"
+            alt="Glass Skin Face Cream"
             width={1600}
             height={1200}
             className="w-full h-auto object-cover"
@@ -88,10 +83,10 @@ function ProductPage() {
         {/* Details */}
         <div className="md:pt-4">
           <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Moisturizers · 50ml
+            Cream · 50ml
           </p>
           <h1 className="font-display text-4xl md:text-5xl leading-[1.05] mb-4">
-            Natural Moisturizing<br />Face Cream
+            Glass Skin<br />Face Cream
           </h1>
           <p className="text-[15px] text-muted-foreground leading-relaxed max-w-md mb-6">
             A lightweight, non-greasy daily cream formulated with 11 skin-identical
