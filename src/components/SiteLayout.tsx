@@ -29,9 +29,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             >
               Shop
             </Link>
-            <a href="#about" className="hover:opacity-60">
-              About
-            </a>
           </nav>
           <button
             type="button"
