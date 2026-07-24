@@ -9,13 +9,13 @@ const productCream = boxAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Natural Moisturizing Face Cream — Nishu Beauty" },
+      { title: "Glass Skin Face Cream — Nishu Beauty" },
       {
         name: "description",
         content:
-          "A lightweight daily moisturizer with clinical formulations. 50ml. Fragrance-free, vegan, cruelty-free.",
+          "Glass Skin Face Cream with Kojic Dipalmitate, Niacinamide, Arbutin & Octinoxate. 50ml. Dermatologically tested.",
       },
-      { property: "og:title", content: "Natural Moisturizing Face Cream" },
+      { property: "og:title", content: "Glass Skin Face Cream — Nishu Beauty" },
       {
         property: "og:description",
         content: "Clinical formulations with integrity. 50ml daily face cream.",
