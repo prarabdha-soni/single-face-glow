@@ -49,11 +49,11 @@ function ShopPage() {
                 params={{ slug: p.slug }}
                 className="group flex flex-col text-center md:text-left"
               >
-                <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-6 md:p-8">
+                <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-0">
                   <img
                     src={p.images[0]}
                     alt={p.name}
-                    className="max-h-[120px] md:max-h-[148px] w-auto max-w-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
@@ -78,22 +78,7 @@ function ShopPage() {
         </div>
       </section>
 
-      <section id="about" className="border-t border-border">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-12 md:py-16 grid md:grid-cols-3 gap-8 md:gap-12">
-          {[
-            ["Clinical", "Formulations rooted in dermatological research."],
-            ["Honest", "Fair pricing. No inflated marketing claims."],
-            ["Considered", "Recyclable packaging and thoughtful sourcing."],
-          ].map(([t, d]) => (
-            <div key={t} className="text-center md:text-left">
-              <h3 className="font-display text-lg md:text-xl mb-2">{t}</h3>
-              <p className="text-xs md:text-[13px] text-muted-foreground leading-relaxed max-w-xs mx-auto md:mx-0">
-                {d}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      
     </SiteLayout>
   );
 }

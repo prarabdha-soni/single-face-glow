@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useCart } from "@/lib/cart";
 import { getProduct, products } from "@/lib/products";
+import Lightbox from "@/components/Lightbox";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
@@ -33,6 +34,9 @@ export const Route = createFileRoute("/product/$slug")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: product.images[0] },
       ],
+      links: [
+        { rel: "preload", href: product.images[0], as: "image" },
+      ],
     };
   },
   component: ProductDetail,
@@ -61,6 +65,7 @@ function ProductDetail() {
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState<"desc" | "how" | "ingredients">("desc");
   const [activeImg, setActiveImg] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const discount = Math.round((1 - product.price / product.compareAt) * 100);
 
   const related = products.filter((p) => p.slug !== product.slug);
@@ -84,7 +89,8 @@ function ProductDetail() {
   };
 
   return (
-    <SiteLayout>
+    <>
+      <SiteLayout>
       {/* Breadcrumb */}
       <div className="max-w-[1600px] mx-auto px-6 pt-6 text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
         <Link to="/" className="hover:text-foreground">
@@ -97,11 +103,14 @@ function ProductDetail() {
       <main className="max-w-[1600px] mx-auto px-6 py-8 md:py-12 grid md:grid-cols-2 gap-12 md:gap-20">
         {/* Image */}
         <div>
-          <div className="bg-muted aspect-square flex items-center justify-center overflow-hidden">
+          <div className="bg-muted aspect-square flex items-center justify-center overflow-hidden p-0">
             <img
               src={product.images[activeImg]}
               alt={product.name}
-              className="w-full h-full object-contain"
+              onClick={() => setLightboxOpen(true)}
+              role="button"
+              aria-label="Open image gallery"
+              className="w-full h-full object-cover cursor-zoom-in"
             />
           </div>
           {product.images.length > 1 && (
@@ -162,7 +171,7 @@ function ProductDetail() {
             <button
               type="button"
               onClick={handleAddToCart}
-              className="flex-1 border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 hover:bg-foreground hover:text-background transition-colors"
+              className="flex-1 bg-foreground text-background text-[14px] tracking-[0.15em] uppercase py-3 hover:bg-foreground/90 transition-colors"
             >
               Add to Cart
             </button>
@@ -171,7 +180,7 @@ function ProductDetail() {
           <button
             type="button"
             onClick={handleBuyNow}
-            className="w-full bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-foreground/85 transition-colors"
+            className="w-full border border-foreground text-[13px] tracking-[0.15em] uppercase py-3 mb-10 hover:bg-muted transition-colors"
           >
             Buy Now
           </button>
@@ -229,12 +238,12 @@ function ProductDetail() {
                   params={{ slug: p.slug }}
                   className="group flex flex-col"
                 >
-                  <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-6">
+                  <div className="bg-muted/60 aspect-square flex items-center justify-center overflow-hidden mb-4 p-2">
                     <img
                       src={p.images[0]}
                       alt={p.name}
                       loading="lazy"
-                      className="max-h-[120px] w-auto max-w-full object-contain group-hover:scale-[1.03] transition-transform"
+                      className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform"
                     />
                   </div>
                   <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1.5">
@@ -254,5 +263,38 @@ function ProductDetail() {
         </section>
       )}
     </SiteLayout>
+      {/* Mobile sticky CTA: prominent Add to Cart + Buy Now on small screens */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border p-3">
+        <div className="flex items-center gap-3">
+          <div className="flex-1">
+            <div className="text-xs text-muted-foreground">Price</div>
+            <div className="font-display">₹ {product.price}.00</div>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="bg-foreground text-background px-4 py-3 rounded-md text-sm font-medium"
+            aria-label="Add to cart"
+          >
+            Add
+          </button>
+          <button
+            onClick={handleBuyNow}
+            className="border border-foreground px-4 py-3 rounded-md text-sm"
+            aria-label="Buy now"
+          >
+            Buy
+          </button>
+        </div>
+      </div>
+
+      <Lightbox
+        images={product.images}
+        activeIndex={activeImg}
+        open={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onPrev={() => setActiveImg((i) => (i - 1 + product.images.length) % product.images.length)}
+        onNext={() => setActiveImg((i) => (i + 1) % product.images.length)}
+      />
+    </>
   );
 }

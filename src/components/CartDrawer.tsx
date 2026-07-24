@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useCart } from "@/lib/cart";
 import { buildWhatsAppOrderUrl, type OrderDetails } from "@/lib/whatsapp-order";
@@ -36,6 +36,8 @@ export function CartDrawer() {
     removeItem,
     clearCart,
   } = useCart();
+  // local animation state for view transitions
+  const [animating, setAnimating] = useState(false);
   const [details, setDetails] = useState<OrderDetails>(emptyDetails);
 
   const updateField = (field: keyof OrderDetails, value: string) => {
@@ -74,13 +76,40 @@ export function CartDrawer() {
     closeCart();
   };
 
+  // focus management + simple transition when view changes
+  useEffect(() => {
+    setAnimating(true);
+    const t = setTimeout(() => setAnimating(false), 180);
+    if (view === "checkout") {
+      setTimeout(() => {
+        const el = document.getElementById("checkout-name") as HTMLElement | null;
+        el?.focus();
+      }, 200);
+    }
+    return () => clearTimeout(t);
+  }, [view]);
+
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
       <SheetContent side="right" className="flex w-full flex-col sm:max-w-md overflow-y-auto">
         <SheetHeader>
-          <SheetTitle className="font-display text-xl tracking-tight">
-            {view === "checkout" ? "Checkout" : "Your cart"}
-          </SheetTitle>
+          <div className="flex items-center gap-3">
+            {view === "checkout" && (
+              <button
+                type="button"
+                onClick={() => setView("cart")}
+                className="inline-flex items-center justify-center w-8 h-8 rounded-md text-muted-foreground hover:bg-muted/50"
+                aria-label="Back to cart"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            )}
+            <SheetTitle className="font-display text-xl tracking-tight">
+              {view === "checkout" ? "Checkout" : "Your cart"}
+            </SheetTitle>
+          </div>
           <SheetDescription className="text-xs tracking-wide">
             {view === "checkout"
               ? "Enter delivery details — we'll receive your order on WhatsApp."
@@ -92,7 +121,7 @@ export function CartDrawer() {
 
         {view === "cart" ? (
           <>
-            <div className="flex-1 space-y-4 py-4">
+            <div className={`flex-1 space-y-4 py-4 ${animating ? "opacity-60 translate-y-1" : "opacity-100"}`}>
               {items.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
                   Add products from the shop to get started.
@@ -154,7 +183,8 @@ export function CartDrawer() {
                 <button
                   type="button"
                   onClick={() => setView("checkout")}
-                  className="w-full bg-foreground text-background text-[11px] tracking-[0.15em] uppercase py-3 hover:bg-foreground/90 transition-colors"
+                  className="w-full bg-foreground text-background text-[13px] tracking-[0.15em] uppercase py-4 hover:bg-foreground/90 transition-colors"
+                  aria-label="Proceed to checkout"
                 >
                   Checkout
                 </button>
@@ -273,7 +303,8 @@ export function CartDrawer() {
               <button
                 type="button"
                 onClick={placeOrderOnWhatsApp}
-                className="w-full bg-[#25D366] text-white text-[11px] tracking-[0.15em] uppercase py-3 hover:bg-[#20bd5a] transition-colors"
+                className="w-full bg-[#25D366] text-white text-[13px] tracking-[0.15em] uppercase py-4 hover:bg-[#20bd5a] transition-colors"
+                aria-label="Send order on WhatsApp"
               >
                 Send order on WhatsApp
               </button>
